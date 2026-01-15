@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS "Trade_Type" (
 );
 
 CREATE TABLE IF NOT EXISTS "Trade" (
--- This table logs each transaction executed by users — what they bought or sold.
+-- This table logs each transaction executed by accounts — what they bought or sold.
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 	asset_id UUID REFERENCES public."Asset"(id) NOT NULL,
 	account_id UUID REFERENCES public."Account"(id) NOT NULL ,
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS "Trade" (
 );
 
 CREATE TABLE IF NOT EXISTS "Position" (
--- This table shows what a user currently owns.
+-- This table shows what an account currently owns.
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(), 
 	account_id UUID REFERENCES public."Account"(id) NOT NULL, 
 	asset_id UUID REFERENCES public."Asset"(id) NOT NULL, 
