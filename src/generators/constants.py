@@ -22,72 +22,48 @@ BROKERAGES = [
     'b5eb4b52-8dda-41e9-afb2-ebbcbe59f886'
 ]
 
-ACCOUNT_TYPES = [
-    1, # cash
-    2, # margin
-    3 # retirement
-]
+ACCOUNT_TYPES = {
+    'cash': 1, 
+    'margin': 2,
+    'retirement': 3
+}
 
-CURRENCIES = [
-    1, #USD
-    2, #EUR
-    3 #BRL
-]
+CURRENCIES = {
+    'USD':1,
+    'EUR':2,
+    'BRL':3
+}
 
 TRADE_TYPES = [
     1, #buy
     2 #sell
 ]
 
-TICKERS_WITH_NAMES = [
-    ("AAPL", "Apple Inc."),
-    ("MSFT", "Microsoft Corporation"),
-    ("AMZN", "Amazon.com Inc."),
-    ("GOOG", "Alphabet Inc. (Class C)"),
-    ("META", "Meta Platforms Inc."),
-    ("TSLA", "Tesla Inc."),
-    ("NVDA", "NVIDIA Corporation"),
-    ("JPM", "JPMorgan Chase & Co."),
-    ("JNJ", "Johnson & Johnson"),
-    ("V", "Visa Inc."),
-    ("UNH", "UnitedHealth Group Incorporated"),
-    ("WMT", "Walmart Inc."),
-    ("MA", "Mastercard Incorporated"),
-    ("HD", "The Home Depot Inc."),
-    ("PG", "Procter & Gamble Company"),
-    ("BAC", "Bank of America Corporation"),
-    ("DIS", "The Walt Disney Company"),
-    ("XOM", "Exxon Mobil Corporation"),
-    ("KO", "The Coca-Cola Company"),
-    ("CVX", "Chevron Corporation"),
-    ("ADBE", "Adobe Inc."),
-    ("PFE", "Pfizer Inc."),
-    ("CSCO", "Cisco Systems Inc."),
-    ("NKE", "Nike Inc."),
-    ("ORCL", "Oracle Corporation"),
-    ("CRM", "Salesforce Inc."),
-    ("INTC", "Intel Corporation"),
-    ("T", "AT&T Inc."),
-    ("PEP", "PepsiCo Inc."),
-    ("ABBV", "AbbVie Inc."),
-    ("MRK", "Merck & Co. Inc."),
-    ("ABT", "Abbott Laboratories"),
-    ("MCD", "McDonald's Corporation"),
-    ("COST", "Costco Wholesale Corporation"),
-    ("ACN", "Accenture plc"),
-    ("TM", "Toyota Motor Corporation"),
-    ("SBUX", "Starbucks Corporation"),
-    ("QCOM", "Qualcomm Incorporated"),
-    ("BMY", "Bristol-Myers Squibb Company"),
-    ("TXN", "Texas Instruments Incorporated"),
-    ("AMGN", "Amgen Inc."),
-    ("HON", "Honeywell International Inc."),
-    ("LIN", "Linde plc"),
-    ("NEE", "NextEra Energy Inc."),
-    ("MDT", "Medtronic plc"),
-    ("LOW", "Lowe's Companies Inc."),
-    ("LMT", "Lockheed Martin Corporation"),
-    ("PM", "Philip Morris International Inc."),
-    ("GS", "The Goldman Sachs Group Inc."),
-    ("RTX", "RTX Corporation")
+ASSETS = [
+    # Stocks
+    ('AAPL', 'Apple Inc.', 'stock', 'USD'),
+    ('MSFT', 'Microsoft Corporation', 'stock', 'USD'),
+    ('NVDA', 'NVIDIA Corporation', 'stock', 'USD'),
+    ('TM', 'Toyota Motor Corporation', 'stock', 'USD'), 
+    ('SAP', 'SAP SE', 'stock', 'EUR'),
+
+    # ETFs
+    ('SPY', 'SPDR S&P 500 ETF', 'etf', 'USD'),
+    ('QQQ', 'Invesco QQQ ETF', 'etf', 'USD'),
+    ('VT', 'Vanguard Total World ETF', 'etf', 'USD'),
+
+    # Bonds
+    ('US10Y', 'US Treasury 10Y', 'bond', 'USD'),
+    ('BR10Y', 'Brazil Gov Bond 10Y', 'bond', 'BRL'),
+
+    # Crypto
+    ('BTC', 'Bitcoin', 'crypto', 'USD'),
+    ('ETH', 'Ethereum', 'crypto', 'USD'),
 ]
+
+ASSET_TYPES = {
+    'stock': 1,
+    'etf': 2,
+    'bond': 3,
+    'crypto': 4,
+}

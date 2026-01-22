@@ -11,7 +11,7 @@ from ..db.ingestion import batch_insert, run_sql_file, copy_stream
 BASE_DIR = Path(__file__).resolve().parents[2]  # project root
 SQL_PATH = BASE_DIR / 'src/generators' / 'base_inserts.sql'
 N_CUSTOMERS = 100
-N_MARKET_PRICES = 100_000
+YEARS_OF_MARKET_PRICES = 7
 
 def run():
     engine = get_engine()
@@ -43,7 +43,7 @@ def run():
     
     
     print('----------------->\nGenerating market_prices...')
-    market_prices = gen_market_prices(assets, N_MARKET_PRICES)
+    market_prices = gen_market_prices(assets, YEARS_OF_MARKET_PRICES)
     copy_stream(engine, 'Market_Price', (
                 'asset_id', 'price_at', 'price', 'created_at', 'updated_at'
                 ), market_prices)

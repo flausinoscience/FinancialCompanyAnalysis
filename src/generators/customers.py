@@ -19,9 +19,9 @@ def gen_signup_date(age):
     if age < 30:
         days_ago = random.randint(0, 365 * 2)   # young users join recently
     elif age < 50:
-        days_ago = random.randint(0, 365 * 5) # moderate
+        days_ago = random.randint(0, 365 * 4) # moderate
     else:
-        days_ago = random.randint(365, 365 * 10) # joined a long time ago on the platform
+        days_ago = random.randint(365, 365 * 7) # joined a long time ago on the platform
 
     return now - timedelta(days=days_ago)
 
