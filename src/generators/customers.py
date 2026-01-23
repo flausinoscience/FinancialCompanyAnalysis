@@ -28,11 +28,11 @@ def gen_signup_date(age):
 
 def assign_risk_profile(age):
     if age < 30:
-        return random.choices(RISK_PROFILES, weights=[0.1, 0.3, 0.6])[0]
+        return random.choices(list(RISK_PROFILES.values()), weights=[0.1, 0.3, 0.6])[0]
     elif age < 50:
-        return random.choices(RISK_PROFILES, weights=[0.2, 0.6, 0.2])[0]
+        return random.choices(list(RISK_PROFILES.values()), weights=[0.2, 0.6, 0.2])[0]
     else:
-        return random.choices(RISK_PROFILES, weights=[0.6, 0.35, 0.05])[0]
+        return random.choices(list(RISK_PROFILES.values()), weights=[0.6, 0.35, 0.05])[0]
 
 
 def gen_age():

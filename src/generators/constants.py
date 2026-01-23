@@ -10,11 +10,11 @@ COUNTRY_WEIGHTS = {
 }
 
 
-RISK_PROFILES = [
-    1, # conservative 
-    2, # moderate
-    3 # aggressive
-]
+RISK_PROFILES = {
+    'conservative': 1,
+    'moderate': 2,
+    'aggressive': 3 
+}
 
 BROKERAGES = [
     'ddb1a914-69d7-494e-9f73-6677ba2c222e',

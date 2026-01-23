@@ -3,9 +3,11 @@ from ..generators import (
     gen_customers,
     gen_accounts,
     gen_assets,
-    gen_market_prices
+    gen_market_prices,
+    asset_price_history,
+    gen_trades
 )
-from ..db.connection import get_engine
+from ..db.connection import get_engine, q
 from ..db.ingestion import batch_insert, run_sql_file, copy_stream
 
 BASE_DIR = Path(__file__).resolve().parents[2]  # project root
@@ -48,6 +50,15 @@ def run():
                 'asset_id', 'price_at', 'price', 'created_at', 'updated_at'
                 ), market_prices)
 
+                
+    print('----------------->\nGenerating trades...')
+    prices_per_assets = asset_price_history()
+    trades = gen_trades(customers, accounts, assets, prices_per_assets)     
+    copy_stream(engine, 'Trade', (
+                'id','asset_id','account_id','type_id', 'quantity','price',
+                'traded_at','commission', 'is_flagged','reason_flag',
+                'created_at','updated_at'
+    ), trades)
 
 if __name__ == '__main__':
     run() 

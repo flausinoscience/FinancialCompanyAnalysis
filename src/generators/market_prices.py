@@ -1,14 +1,56 @@
 import random
 from datetime import datetime, timedelta
 from .constants import ASSET_TYPES
+from db.connection import q
 
 
 ASSET_BEHAVIOR = {
-    ASSET_TYPES['stock']: {'vol': 0.02,  'drift': 0.0003, 'shock_prob': 0.01,  'shock_scale': 0.08},  
-    ASSET_TYPES['etf']: {'vol': 0.01,  'drift': 0.0002, 'shock_prob': 0.005, 'shock_scale': 0.04},  
-    ASSET_TYPES['bond']: {'vol': 0.003, 'drift': 0.00005,'shock_prob': 0.001, 'shock_scale': 0.01},  
-    ASSET_TYPES['crypto']: {'vol': 0.06,  'drift': 0.0001, 'shock_prob': 0.03,  'shock_scale': 0.25},  
+    ASSET_TYPES['stock']: {
+        'vol': 0.02,
+        'drift': 0.0003,
+        'shock_prob': 0.01,
+        'shock_scale': 0.08
+    },  
+    ASSET_TYPES['etf']: {
+        'vol': 0.01,
+        'drift': 0.0002,
+        'shock_prob': 0.005,
+        'shock_scale': 0.04
+    },  
+    ASSET_TYPES['bond']: {
+        'vol': 0.003,
+        'drift': 0.00005,
+        'shock_prob': 0.001,
+        'shock_scale': 0.01
+    },  
+    ASSET_TYPES['crypto']: {
+        'vol': 0.06,
+        'drift': 0.0001,
+        'shock_prob': 0.03,
+        'shock_scale': 0.25
+    },  
 }
+
+
+def asset_price_history():
+    sql = """
+        SELECT 
+            asset_id,
+            price_at::date AS price_date,
+            price
+        FROM 
+            public."Market_Price"
+        WHERE
+            deleted_at IS NULL
+    """
+
+    df = q(sql)
+
+    lookup = {}
+    for asset_id, group in df.groupby('asset_id'):
+        lookup[str(asset_id)] = dict(zip(group['price_date'], group['price']))
+
+    return lookup
 
 
 def gen_market_prices(assets, years=5):
